@@ -18,6 +18,7 @@ CLOUDFLARE_API_TOKEN = os.getenv("CLOUDFLARE_API_TOKEN")
 CLOUDFLARE_ACCOUNT_ID = os.getenv("CLOUDFLARE_ACCOUNT_ID")
 
 model = "@cf/meta/llama-2-7b-chat-int8"
+# model = "@cf/meta/llama-3-8b-instruct"
 
 class Cloudflare_WorkersAI_LLM(CustomLLM):
     context_window: int = 4096
@@ -39,7 +40,7 @@ class Cloudflare_WorkersAI_LLM(CustomLLM):
             f"https://api.cloudflare.com/client/v4/accounts/{CLOUDFLARE_ACCOUNT_ID}/ai/run/{model}",
             headers={"Authorization": f"Bearer {CLOUDFLARE_API_TOKEN}"},
             json={"messages": [
-                {"role": "system", "content": "You are a Helpful AI assistant."},
+                # {"role": "system", "content": "You are a Helpful AI assistant."},
                 {"role": "user", "content": prompt}
             ]}
         )
@@ -55,7 +56,7 @@ class Cloudflare_WorkersAI_LLM(CustomLLM):
             f"https://api.cloudflare.com/client/v4/accounts/{CLOUDFLARE_ACCOUNT_ID}/ai/run/{model}",
             headers={"Authorization": f"Bearer {CLOUDFLARE_API_TOKEN}"},
             json={"messages": [
-                {"role": "system", "content": "You are a Helpful AI assistant."},
+                # {"role": "system", "content": "You are a Helpful AI assistant."},
                 {"role": "user", "content": prompt}
             ]}
         )

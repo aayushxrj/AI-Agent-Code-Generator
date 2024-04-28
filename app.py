@@ -3,8 +3,14 @@ from llama_index.core import VectorStoreIndex, SimpleDirectoryReader,PromptTempl
 from llama_index.core.embeddings import resolve_embed_model
 
 from custom_llm import Cloudflare_WorkersAI_LLM as llm
+# llm = llm()
+# code_llm = llm()
 
+from llama_index.core.tools import QueryEngineTool, ToolMetadata
+from llama_index.core.agent import ReActAgent
 
+from prompts import context, code_parser_template
+from code_reader import code_reader
 
 parser = LlamaParse(result_type="markdown")
 
@@ -19,3 +25,23 @@ query_engine = vector_index.as_query_engine(llm=llm())
 
 result = query_engine.query("What are some of the routes in the api?")
 print(result)
+
+# tools=[
+#     QueryEngineTool(
+#         query_engine=query_engine,
+#         metadata=ToolMetadata(
+#             name="api_documentation",
+#             description=("This gives documentation about code for an API."
+#                          "Use this for reading docs for the API."
+#                          "Use a detailed plain text question as input to the tool."),
+#             # keywords=["search", "query", "document"],
+#         ),
+#     ),
+#     code_reader,
+# ]
+
+# agent = ReActAgent.from_tools(tools, llm=llm(), verbose=True, context=context)
+
+# while (prompt := input("Enter a prompt (q to quit):")) != "q":
+#     result = agent.chat(prompt)
+#     print(result)
