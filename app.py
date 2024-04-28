@@ -36,14 +36,16 @@ tools=[
                         ),
         ),
     ),
-    # code_reader,
+    code_reader,  
 ]
 
-agent = ReActAgent.from_tools(tools, llm=code_llm(), verbose=True, context=context)
+agent = ReActAgent.from_tools(tools, llm=llm(), verbose=True, context=context)
 
 # while (prompt := input("Enter a prompt (q to quit):")) != "q":
 #     result = agent.chat(prompt)
 #     print(result)
+
+
 # result = agent.query("What are some of the routes in the api?")
-result = agent.chat("read the contents of the test.py and give me the exact code back")
+result = agent.chat("read the contents of the test.py and give me the exact code back.")
 print(result)
