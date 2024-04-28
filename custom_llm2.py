@@ -17,12 +17,7 @@ load_dotenv()
 CLOUDFLARE_API_TOKEN = os.getenv("CLOUDFLARE_API_TOKEN")
 CLOUDFLARE_ACCOUNT_ID = os.getenv("CLOUDFLARE_ACCOUNT_ID")
 
-# model = "@cf/meta/llama-2-7b-chat-int8"   // dumb model
-# model = "@cf/meta/llama-3-8b-instruct"
-# model = "@cf/meta/llama-2-7b-chat-fp16"    // not working check:print(inference)
-model = "@hf/thebloke/openhermes-2.5-mistral-7b-awq"
-# model = "@hf/mistralai/mistral-7b-instruct-v0.2"
-
+model = "@hf/thebloke/deepseek-coder-6.7b-instruct-awq"
 
 class Cloudflare_WorkersAI_LLM(CustomLLM):
     context_window: int = 4096
@@ -49,7 +44,6 @@ class Cloudflare_WorkersAI_LLM(CustomLLM):
             ]}
         )
         inference = response.json()
-        print(inference) # debug
         res = inference["result"]["response"]
         return CompletionResponse(text=str(res))
 
