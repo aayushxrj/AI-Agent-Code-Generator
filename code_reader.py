@@ -2,6 +2,19 @@ from llama_index.core.tools import FunctionTool
 import os
 
 
+# For better function defnition 
+# from pydantic import Field
+#def get_weather(
+#    location: str = Field(
+#        description="A city name and state, formatted like '<name>, <state>'"
+#    ),
+#) -> str:
+#    """Usfeful for getting the weather for a given location."""
+#    ...
+
+#tool = FunctionTool.from_defaults(get_weather)
+
+
 def code_reader_func(file_name):
     path = os.path.join("data", file_name)
     try:
